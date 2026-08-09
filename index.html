@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f3e8">
+  <title>林宏翰醫師｜內分泌暨新陳代謝科</title>
+  <meta name="description" content="林宏翰醫師｜內分泌暨新陳代謝科。分享糖尿病、高血壓、高血脂症、體重管理、骨質疏鬆、甲狀腺與其他內分泌疾病衛教資訊。">
+  <style>
+    :root{
+      --bg:#fbf8ef; --paper:#fffdf7; --ink:#173f6b; --muted:#637485;
+      --gold:#c99535; --line:rgba(23,63,107,.13); --shadow:0 18px 45px rgba(31,67,94,.10);
+      --radius:22px; --max:1160px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;font-family:"Noto Sans TC","Microsoft JhengHei","PingFang TC",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:#24394a;line-height:1.75;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(217,230,197,.34), transparent 24rem),
+        radial-gradient(circle at 95% 15%, rgba(191,223,241,.35), transparent 27rem),
+        var(--bg);
+    }
+    a{color:inherit} img{max-width:100%;display:block}
+    .nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(14px);background:rgba(251,248,239,.88);border-bottom:1px solid var(--line)}
+    .nav-inner{max-width:var(--max);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 20px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:800}
+    .brand img{width:46px;height:46px;object-fit:contain}
+    .brand small{display:block;font-size:.75rem;font-weight:500;color:#617487}
+    .nav-links{display:flex;gap:8px;flex-wrap:wrap}
+    .nav-links a{text-decoration:none;color:#34556f;font-size:.93rem;font-weight:650;padding:8px 10px;border-radius:999px}
+    .nav-links a:hover{background:rgba(23,63,107,.07)}
+    .hero{max-width:var(--max);margin:auto;padding:38px 20px 20px}
+    .hero-card{background:var(--paper);border:1px solid rgba(201,149,53,.22);border-radius:30px;overflow:hidden;box-shadow:var(--shadow)}
+    .hero-card img{width:100%}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;padding:18px 22px 22px;justify-content:center;border-top:1px solid var(--line)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 16px;border-radius:14px;text-decoration:none;font-weight:800;border:1px solid transparent}
+    .btn.primary{background:var(--ink);color:#fff}.btn.gold{background:#f6ead0;color:#775316;border-color:#ead2a0}.btn.ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+    .hero-profile{position:relative}
+    .hero-profile summary{cursor:pointer;list-style:none}
+    .hero-profile summary::-webkit-details-marker{display:none}
+    .hero-profile[open] summary{border-radius:14px 14px 8px 8px}
+    .hero-profile-menu{position:absolute;left:0;top:calc(100% + 8px);min-width:210px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;z-index:30}
+    .hero-profile-menu a{display:block;padding:11px 14px;text-decoration:none;color:var(--ink);font-weight:700;border-bottom:1px solid var(--line)}
+    .hero-profile-menu a:last-child{border-bottom:0}
+    .section{max-width:var(--max);margin:auto;padding:56px 20px}
+    .section h2{margin:0 0 8px;color:var(--ink);font-size:clamp(1.65rem,3vw,2.25rem)}
+    .lead{margin:0 0 28px;color:var(--muted);max-width:780px}
+    .intro{display:grid;grid-template-columns:280px 1fr;gap:34px;align-items:center}
+    .logo-card,.card{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 10px 24px rgba(44,73,93,.06)}
+    .logo-card{padding:24px;border-radius:28px}
+    .intro h3{color:var(--ink);font-size:1.5rem;margin:.2rem 0 .6rem}
+    .quote{margin:22px 0 0;padding:18px 20px;border-left:4px solid var(--gold);background:rgba(255,255,255,.58);border-radius:0 16px 16px 0;color:#536678}
+    .values{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .card{padding:22px}
+    .card h3{margin:6px 0;color:var(--ink)}
+    .card p{margin:0;color:#657787;font-size:.95rem}
+    .icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-size:1.5rem;background:#eef5f8}
+    .accordion{display:grid;gap:12px}
+    details.topic{background:rgba(255,255,255,.82);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 8px 20px rgba(44,73,93,.05)}
+    details.topic summary{cursor:pointer;list-style:none;padding:18px 20px;font-weight:800;color:var(--ink);font-size:1.17em;display:flex;align-items:center;justify-content:space-between}
+    details.topic summary::-webkit-details-marker{display:none}
+    details.topic summary::after{content:"＋";color:var(--gold);font-size:1.3rem}
+    details.topic[open] summary::after{content:"－"}
+    .topic-list{padding:0 20px 18px;border-top:1px solid var(--line)}
+    .topic-list a{display:block;padding:14px 0;text-decoration:none;color:var(--ink);font-weight:700;border-bottom:1px dashed var(--line)}
+    .topic-list a:last-child{border-bottom:0}
+    .empty{padding:14px 0;color:#82909b}
+    .tool{display:block;text-decoration:none;transition:.18s ease}
+    .tool:hover{transform:translateY(-2px);border-color:rgba(201,149,53,.42)}
+    .arrow{float:right;color:var(--gold);font-size:1.2rem}
+    .links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .link-card{text-decoration:none;display:block;transition:.18s ease}
+    .link-card:hover{transform:translateY(-2px);border-color:rgba(201,149,53,.42)}
+    footer{border-top:1px solid var(--line);padding:30px 20px 44px;text-align:center;color:#6c7b89;font-size:.9rem}
+    @media(max-width:900px){
+      .nav-links{display:none}.intro{grid-template-columns:1fr}.logo-card{max-width:260px;margin:auto}
+      .values,.links-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:620px){
+      .hero{padding-top:20px}.hero-actions .btn{width:100%}.hero-profile{width:100%}.hero-profile-menu{position:static;margin-top:8px;width:100%}.values,.links-grid{grid-template-columns:1fr}
+      .section{padding:42px 18px}.nav-inner{padding-inline:14px}
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">
+        <img src="logo.png" alt="林宏翰醫師 Logo">
+        <span>林宏翰醫師<small>內分泌暨新陳代謝科</small></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#about">關於我</a><a href="#topics">衛教文章</a><a href="#tools">健康工具</a><a href="#booking">門診掛號</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-card">
+        <img src="hero-poster.png" alt="林宏翰醫師主視覺海報">
+        <div class="hero-actions">
+          <details class="hero-profile">
+            <summary class="btn primary">醫師簡介 ＋</summary>
+            <div class="hero-profile-menu">
+              <a href="https://805.mnd.gov.tw/profile/%E6%9E%97%E5%AE%8F%E7%BF%B0/" target="_blank" rel="noopener">國軍花蓮總醫院 →</a>
+              <a href="https://wwwv.tsgh.ndmutsgh.edu.tw/DocDet/191/10054/24987/5651" target="_blank" rel="noopener">三軍總醫院 →</a>
+            </div>
+          </details>
+          <a class="btn gold" href="https://reg.805.mnd.gov.tw/webreg/calendar_dr/ekA4-2lS4nN2s_b5cN1zJg%3D%3D" target="_blank" rel="noopener">北埔總院區掛號 ↗</a>
+          <a class="btn ghost" href="https://reg.805.mnd.gov.tw/webreg/calendar_dr/Hq6IF7LAT9dUelrj8HB9fw%3D%3D" target="_blank" rel="noopener">進豐門診處掛號 ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="intro">
+        <div class="logo-card"><img src="logo.png" alt="林宏翰醫師 Logo"></div>
+        <div>
+          <h2>關於我</h2>
+          <p class="lead">以內分泌暨新陳代謝專業為核心，整理實用、易懂、可以帶回生活中執行的健康資訊。</p>
+          <h3>專業醫療 × 溫暖關懷 × 全人照護 × 持續成長</h3>
+          <p>這裡將持續分享糖尿病、高血壓、高血脂症、體重管理、骨質疏鬆、甲狀腺與其他內分泌疾病相關衛教內容，也會逐步加入實用健康工具。</p>
+          <div class="quote">本網站為個人衛教與健康知識分享平台；實際診斷、治療與用藥仍應依個別病況，由醫療專業人員評估。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>我的核心理念</h2>
+            <div class="values">
+        <article class="card"><div class="icon">⚕</div><h3>專業醫療</h3><p>以實證醫學與臨床判斷為基礎，提供清楚、可信賴的健康資訊。</p></article>
+        <article class="card"><div class="icon">♡</div><h3>溫暖關懷</h3><p>理解每個人的生活脈絡與需求，讓衛教更貼近真實生活。</p></article>
+        <article class="card"><div class="icon">◎</div><h3>全人照護</h3><p>不只看數字，也關注飲食、運動、睡眠、壓力與長期生活品質。</p></article>
+        <article class="card"><div class="icon">↗</div><h3>持續成長</h3><p>持續學習與更新，把複雜的新知轉化成可以理解的內容。</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="topics">
+      <h2>衛教文章</h2>
+      
+      <div class="accordion">
+        <details class="topic"><summary>糖尿病</summary><div class="topic-list"><div class="empty">文章準備中</div></div></details>
+        <details class="topic"><summary>高血壓</summary><div class="topic-list"><div class="empty">文章準備中</div></div></details>
+        <details class="topic">
+          <summary>高血脂症</summary>
+          <div class="topic-list">
+            <a href="2022-taiwan-lipid-guideline.html">2022 台灣在地實用的高血脂治療指引 →</a>
+            <a href="egg-and-ldl.html">雞蛋與 LDL-C 的關係 →</a>
+          </div>
+        </details>
+        <details class="topic"><summary>體重管理</summary><div class="topic-list"><div class="empty">文章準備中</div></div></details>
+        <details class="topic"><summary>健康飲食</summary><div class="topic-list"><a href="beans-and-gout.html">豆類知多少 →</a></div></details>
+        <details class="topic"><summary>骨質疏鬆</summary><div class="topic-list"><div class="empty">文章準備中</div></div></details>
+        <details class="topic"><summary>甲狀腺</summary><div class="topic-list"><div class="empty">文章準備中</div></div></details>
+        <details class="topic"><summary>其他內分泌疾病</summary><div class="topic-list"><div class="empty">文章準備中</div></div></details>
+      </div>
+    </section>
+
+    <section class="section" id="tools">
+      <h2>健康工具</h2>
+            <div class="accordion">
+        <details class="topic">
+          <summary>我的健康計算機</summary>
+          <div class="topic-list">
+            <a href="https://jerry24062645.github.io/bmr-tdee-calculator-jerry-lin_09082026/" target="_blank" rel="noopener">每日熱量與飲食份數計算器 →</a>
+            <a href="https://cdrc.hpa.gov.tw/hra-openservice-menupage.jsp?all" target="_blank" rel="noopener">慢性疾病風險評估 →</a>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="booking">
+      <h2>門診與官方資訊</h2>
+      <p class="lead">內容請以醫院官方網站顯示為準。</p>
+      <div class="accordion" style="margin-bottom:16px">
+        <details class="topic">
+          <summary>醫師簡介</summary>
+          <div class="topic-list">
+            <a href="https://805.mnd.gov.tw/profile/%E6%9E%97%E5%AE%8F%E7%BF%B0/" target="_blank" rel="noopener">國軍花蓮總醫院 →</a>
+            <a href="https://wwwv.tsgh.ndmutsgh.edu.tw/DocDet/191/10054/24987/5651" target="_blank" rel="noopener">三軍總醫院 →</a>
+          </div>
+        </details>
+      </div>
+      <div class="links-grid">
+        <a class="card link-card" href="https://reg.805.mnd.gov.tw/webreg/calendar_dr/ekA4-2lS4nN2s_b5cN1zJg%3D%3D" target="_blank" rel="noopener"><span class="arrow">↗</span><h3>北埔總院區掛號</h3></a>
+        <a class="card link-card" href="https://reg.805.mnd.gov.tw/webreg/calendar_dr/Hq6IF7LAT9dUelrj8HB9fw%3D%3D" target="_blank" rel="noopener"><span class="arrow">↗</span><h3>進豐門診處掛號</h3></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> 林宏翰醫師｜內分泌暨新陳代謝科</div>
+    <div>專業醫療・溫暖關懷・全人照護・持續成長</div>
+  </footer>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
