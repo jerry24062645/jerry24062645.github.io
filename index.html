@@ -41,7 +41,7 @@
     .hero-profile summary{cursor:pointer;list-style:none}
     .hero-profile summary::-webkit-details-marker{display:none}
     .hero-profile[open] summary{border-radius:14px 14px 8px 8px}
-    .hero-profile-menu{position:absolute;left:0;top:calc(100% + 8px);min-width:210px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;z-index:30}
+    .hero-profile-menu{position:absolute;left:50%;transform:translateX(-50%);top:calc(100% + 8px);min-width:230px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;z-index:30}
     .hero-profile-menu a{display:block;padding:11px 14px;text-decoration:none;color:var(--ink);font-weight:700;border-bottom:1px solid var(--line)}
     .hero-profile-menu a:last-child{border-bottom:0}
     .section{max-width:var(--max);margin:auto;padding:56px 20px}
@@ -171,7 +171,7 @@
         <details class="topic">
           <summary>我的健康計算機</summary>
           <div class="topic-list">
-            <a href="https://jerry24062645.github.io/bmr-tdee-calculator-jerry-lin_09082026/" target="_blank" rel="noopener">每日熱量與飲食份數計算器 →</a>
+            <a href="bmr-tdee.html">每日熱量與飲食份數計算器 →</a>
             <a href="https://cdrc.hpa.gov.tw/hra-openservice-menupage.jsp?all" target="_blank" rel="noopener">慢性疾病風險評估 →</a>
           </div>
         </details>
@@ -210,6 +210,13 @@
     <div>專業醫療・溫暖關懷・全人照護・持續成長</div>
   </footer>
 
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script>
+document.getElementById("year").textContent = new Date().getFullYear();
+document.addEventListener("click", function(e){
+  document.querySelectorAll(".hero-profile[open]").forEach(function(d){
+    if(!d.contains(e.target)) d.removeAttribute("open");
+  });
+});
+</script>
 </body>
 </html>
