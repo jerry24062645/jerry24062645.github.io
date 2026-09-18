@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>每日熱量與六大類飲食份數計算器</title>
+  <title>每日熱量、飲食份數與運動建議計算器</title>
   <style>
     :root {
       --bg: #f5f7f8;
@@ -161,6 +161,66 @@
       margin-top: 2px;
     }
 
+    .metric.hr-zone {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid transparent;
+    }
+
+    .metric.hr-zone::after {
+      content: "♥";
+      position: absolute;
+      right: 14px;
+      top: 10px;
+      font-size: 24px;
+      opacity: .16;
+    }
+
+    .metric.hr-moderate {
+      background: linear-gradient(145deg, #eefaf8, #dff4f1);
+      border-color: #b9e2dc;
+    }
+
+    .metric.hr-vigorous {
+      background: linear-gradient(145deg, #fff6ef, #fee9db);
+      border-color: #f2c9ad;
+    }
+
+    .metric.hr-moderate .value { color: #18786f; }
+    .metric.hr-vigorous .value { color: #b75425; }
+
+    .hr-value {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .hr-unit {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .hr-badge {
+      display: inline-block;
+      margin-top: 9px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .hr-moderate .hr-badge {
+      color: #12665f;
+      background: #ccece7;
+    }
+
+    .hr-vigorous .hr-badge {
+      color: #98431e;
+      background: #fbd7c0;
+    }
+
     .warning {
       margin-top: 14px;
       background: var(--warn-soft);
@@ -289,9 +349,9 @@
 </head>
 <body>
   <main class="container">
-    <h1>每日熱量與飲食份數計算器</h1>
+    <h1>每日熱量、飲食份數與運動建議計算器</h1>
     <div class="subtitle">
-      計算 BMI、基礎代謝率（BMR）、每日總熱量消耗（TDEE），並提供減重目標熱量與六大類飲食建議份數。
+      計算 BMI、基礎代謝率（BMR）、每日總熱量消耗（TDEE），並提供減重目標熱量、六大類飲食份數及個人化運動建議。
     </div>
 
     <div class="grid">
@@ -329,6 +389,21 @@
           <option value="1.55" selected>活動強度適中（每週運動 4–5 天）</option>
           <option value="1.72">活動強度高（每週運動 6–7 天）</option>
           <option value="1.9">活動強度極高（長時間運動或體力勞動工作）</option>
+        </select>
+
+        <label for="restingHr">安靜心率（次／分鐘）</label>
+        <input id="restingHr" type="number" min="30" max="150" step="1" placeholder="例如：70">
+        <span class="hint">請在休息至少 5 分鐘後，或早晨剛醒來、尚未下床活動時測量</span>
+
+        <label for="exerciseDays">預計每週運動日數</label>
+        <select id="exerciseDays">
+          <option value="1">1 天</option>
+          <option value="2">2 天</option>
+          <option value="3" selected>3 天</option>
+          <option value="4">4 天</option>
+          <option value="5">5 天</option>
+          <option value="6">6 天</option>
+          <option value="7">7 天</option>
         </select>
 
         <button type="button" onclick="calculate()">開始計算</button>
@@ -395,6 +470,43 @@
           <h3>Brief Summary</h3>
           <pre id="briefSummary" class="summary-text"></pre>
           <button type="button" class="copy-btn" onclick="copyBriefSummary()">Copy Brief Summary</button>
+        </div>
+      </section>
+
+      <section id="exerciseSection" class="card full hidden">
+        <h2>個人化運動建議</h2>
+
+        <div class="result-grid">
+          <div class="metric">
+            <div class="name">預估最大心率</div>
+            <div class="value"><span id="maxHrValue">—</span></div>
+            <div class="small">次／分鐘（220 − 年齡）</div>
+          </div>
+
+          <div class="metric">
+            <div class="name">儲備心率 HRR</div>
+            <div class="value"><span id="hrrValue">—</span></div>
+            <div class="small">最大心率 − 安靜心率</div>
+          </div>
+
+          <div class="metric hr-zone hr-moderate">
+            <div class="name">中等強度目標心率</div>
+            <div class="value hr-value"><span id="moderateHrValue">—</span><span class="hr-unit">次／分鐘</span></div>
+            <div class="hr-badge">40%–59% HRR</div>
+          </div>
+
+          <div class="metric hr-zone hr-vigorous">
+            <div class="name">高強度目標心率</div>
+            <div class="value hr-value"><span id="vigorousHrValue">—</span><span class="hr-unit">次／分鐘</span></div>
+            <div class="hr-badge">60%–89% HRR</div>
+          </div>
+        </div>
+
+        <div class="note" id="weeklyExerciseAdvice"></div>
+        <div class="note" id="dailyExerciseAdvice"></div>
+        <div class="note">以上心率區間已依您的年齡與安靜心率計算。</div>
+        <div class="note">
+          目標心率採 Karvonen 公式：安靜心率 ＋ 強度百分比 × 儲備心率。若有心血管疾病、服用影響心率的藥物，或運動時出現胸悶、暈眩、異常喘促，應由醫療專業人員個別評估。
         </div>
       </section>
     </div>
@@ -480,9 +592,11 @@
       const weight = Number(document.getElementById("weight").value);
       const waist = Number(document.getElementById("waist").value);
       const activity = Number(document.getElementById("activity").value);
+      const restingHr = Number(document.getElementById("restingHr").value);
+      const exerciseDays = Number(document.getElementById("exerciseDays").value);
 
-      if (!age || !height || !weight || age <= 0 || height <= 0 || weight <= 0) {
-        alert("請完整填寫年齡、身高與體重。");
+      if (!age || !height || !weight || !restingHr || age <= 0 || height <= 0 || weight <= 0 || restingHr <= 0) {
+        alert("請完整填寫年齡、身高、體重與安靜心率。");
         return;
       }
 
@@ -506,6 +620,42 @@
       document.getElementById("bmrValue").textContent = bmr;
       document.getElementById("tdeeValue").textContent = tdee;
       document.getElementById("targetValue").textContent = targetStart;
+
+      const maxHr = 220 - age;
+      const hrr = maxHr - restingHr;
+      if (hrr <= 0) {
+        alert("安靜心率須低於預估最大心率（220 − 年齡）。");
+        return;
+      }
+
+      const targetHr = intensity => Math.ceil(restingHr + intensity * hrr);
+      const moderateLow = targetHr(0.40);
+      const moderateHigh = targetHr(0.60);
+      const vigorousLow = moderateHigh;
+      const vigorousHigh = targetHr(0.90);
+
+      document.getElementById("maxHrValue").textContent = maxHr;
+      document.getElementById("hrrValue").textContent = hrr;
+      const moderateDisplayHigh = moderateHigh - 1;
+      const vigorousDisplayHigh = vigorousHigh - 1;
+      document.getElementById("moderateHrValue").textContent = `${moderateLow}–${moderateDisplayHigh}`;
+      document.getElementById("vigorousHrValue").textContent = `${vigorousLow}–${vigorousDisplayHigh}`;
+
+      const perDay = minutes => Math.round(minutes / exerciseDays);
+      let weeklyAdvice;
+      let dailyAdvice;
+      if (bmi >= 24) {
+        weeklyAdvice = "BMI ≥ 24（體重過重／肥胖）：建議每週至少 250–300 分鐘的中至高強度有氧運動。";
+        dailyAdvice = `若每週運動 ${exerciseDays} 天，每個運動日約需 ${perDay(250)}–${perDay(300)} 分鐘。`;
+      } else if (bmi >= 18.5) {
+        weeklyAdvice = "健康體重：建議每週 150–300 分鐘中等強度，或 75–150 分鐘高強度有氧運動。";
+        dailyAdvice = `若每週運動 ${exerciseDays} 天：中等強度每次約 ${perDay(150)}–${perDay(300)} 分鐘；高強度每次約 ${perDay(75)}–${perDay(150)} 分鐘。`;
+      } else {
+        weeklyAdvice = "BMI < 18.5（體重過輕）：一般成人仍可參考每週 150–300 分鐘中等強度，或 75–150 分鐘高強度有氧運動；若有營養不良或慢性病，建議先接受個別評估。";
+        dailyAdvice = `若每週運動 ${exerciseDays} 天：中等強度每次約 ${perDay(150)}–${perDay(300)} 分鐘；高強度每次約 ${perDay(75)}–${perDay(150)} 分鐘。`;
+      }
+      document.getElementById("weeklyExerciseAdvice").textContent = weeklyAdvice;
+      document.getElementById("dailyExerciseAdvice").textContent = dailyAdvice;
 
       let note = `建議先以約 ${targetStart} 大卡／日作為起始目標`;
       if (targetLower < targetStart) {
@@ -561,6 +711,9 @@
         `BMR: ${bmr.toLocaleString()} kcal/day`,
         `TDEE: ${tdee.toLocaleString()} kcal/day`,
         `Target calories: ~${targetStart.toLocaleString()} kcal/day`,
+        `HRmax/Resting HR/HRR: ${maxHr} / ${restingHr} / ${hrr} bpm`,
+        `Target HR: moderate ${moderateLow}–${moderateDisplayHigh} bpm; vigorous ${vigorousLow}–${vigorousDisplayHigh} bpm`,
+        `Exercise: ${weeklyAdvice} ${dailyAdvice}`,
         "Diet: Balanced diet with individualized food portions advised.",
         `  - Whole grains: ${plan.grains} servings (unrefined ${plan.whole} / others ${plan.otherGrains})`,
         `  - Protein foods: ${plan.protein} servings`,
@@ -574,11 +727,12 @@
 
       document.getElementById("results").classList.remove("hidden");
       document.getElementById("dietSection").classList.remove("hidden");
+      document.getElementById("exerciseSection").classList.remove("hidden");
 
       document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
-    ["age", "height", "weight", "waist"].forEach(id => {
+    ["age", "height", "weight", "waist", "restingHr"].forEach(id => {
       document.getElementById(id).addEventListener("keydown", e => {
         if (e.key === "Enter") calculate();
       });
