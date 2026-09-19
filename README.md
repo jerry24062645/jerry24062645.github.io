@@ -18,3 +18,7 @@ GitHub → Settings → Pages → Deploy from a branch → main / root。
 
 ## 2026-09-19 更新
 - `bmr-tdee.index.html` 已替換為最新版 `bmr-tdee.index(7).html`。
+
+## 2026-09-19 體重管理更新
+- 新增 `personalized-exercise-quality-quantity.html`：個人化運動之質與量。
+- 新增衛教圖 `personalized-exercise-quality-quantity.png`。
